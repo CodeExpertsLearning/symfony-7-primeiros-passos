@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body%}
+    {{users|length}}
+
+    {% if users|length > 2 %}  <br> Exiba algo  <br> {% endif %}
+
+    {% for user in users %}
+        {% if loop.first %}  <br> Primeiro  <br> {% endif %}
+
+        {{user.name}} - {{user.email}} <br>
+    {% else %}
+        Sem Usuários...
+    {% endfor %}
+
+    <button class="btn btn-green">TESTE</button>
+{% endblock %}

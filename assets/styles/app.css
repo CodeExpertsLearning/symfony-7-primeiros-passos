@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@source not "../../public/";
+
+.btn {
+    @apply px-6 py-4 font-bold rounded border text-white text-xl
+}
+
+.btn-green {
+    @apply border-green-900 bg-green-600
+}
