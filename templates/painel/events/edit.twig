@@ -1,7 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block body %}
 
-{% block body %}
+{% include 'painel/events/includes/breadcrumb.twig' with {'actualPage': 'Editar Evento'} %}
 
-    {% include 'painel/events/_form.twig' with {'nameButton': 'Atualizar Evento'} %}
-
+{% include 'painel/events/_form.twig' with {'nameButton': 'Atualizar Evento'} %}
 {% endblock %}

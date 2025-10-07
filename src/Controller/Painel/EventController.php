@@ -33,7 +33,7 @@ final class EventController extends AbstractController
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()) {
+        if($form->isSubmitted() && $form->isValid()) {
 
             $event = $form->getData();
 
@@ -42,6 +42,12 @@ final class EventController extends AbstractController
 
             $em->persist($event);
             $em->flush();
+
+            return $this->redirectToRoute(
+                'painel_events_edit',
+                ['event' => $event->getId()],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->render(
@@ -66,12 +72,18 @@ final class EventController extends AbstractController
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()) {
+        if($form->isSubmitted() && $form->isValid()) {
 
             $event = $form->getData();
             $event->setUpdatedAt();
 
             $em->flush();
+
+            return $this->redirectToRoute(
+                'painel_events_edit',
+                ['event' => $event->getId()],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->render(

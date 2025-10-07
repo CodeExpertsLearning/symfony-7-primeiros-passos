@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-   {% include 'painel/events/_form.twig' with {'nameButton': 'Criar Evento'} %}
+
+    {% include 'painel/events/includes/breadcrumb.twig' with {'actualPage': 'Criar Evento'} %}
+
+    {% include 'painel/events/_form.twig' with {'nameButton': 'Criar Evento'} %}
 {% endblock %}

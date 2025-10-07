@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints;
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 #[ORM\Table(name: 'events')]
 class Event
@@ -16,21 +16,27 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Constraints\NotBlank(message: 'Este campo é obrigatório')]
+    #[Constraints\Length(max: 80, maxMessage: 'Este campo deve ter no máximo 80 caracteres!' )]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Constraints\NotBlank(message: 'Este campo é obrigatório')]
     private ?string $body = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Constraints\NotBlank(message: 'Este campo é obrigatório')]
     private ?string $slug = null;
 
     #[ORM\Column]
+    #[Constraints\NotBlank(message: 'Este campo é obrigatório')]
     private ?\DateTime $startEvent = null;
 
     #[ORM\Column]
+    #[Constraints\NotBlank(message: 'Este campo é obrigatório')]
     private ?\DateTime $endEvent = null;
 
     #[ORM\Column]
@@ -49,7 +55,7 @@ class Event
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
@@ -61,7 +67,7 @@ class Event
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
@@ -73,7 +79,7 @@ class Event
         return $this->body;
     }
 
-    public function setBody(string $body): static
+    public function setBody(?string $body): static
     {
         $this->body = $body;
 
@@ -85,7 +91,7 @@ class Event
         return $this->slug;
     }
 
-    public function setSlug(string $slug): static
+    public function setSlug(?string $slug): static
     {
         $this->slug = $slug;
 
@@ -97,7 +103,7 @@ class Event
         return $this->startEvent;
     }
 
-    public function setStartEvent(\DateTime $startEvent): static
+    public function setStartEvent(?\DateTime $startEvent): static
     {
         $this->startEvent = $startEvent;
 
@@ -109,7 +115,7 @@ class Event
         return $this->endEvent;
     }
 
-    public function setEndEvent(\DateTime $endEvnt): static
+    public function setEndEvent(?\DateTime $endEvnt): static
     {
         $this->endEvent = $endEvnt;
 
@@ -121,9 +127,9 @@ class Event
         return $this->createdAt;
     }
 
-    public function setCreatedAt(): static
+    public function setCreatedAt(?\DateTimeImmutable $createdAt = null): static
     {
-        $this->createdAt = new \DateTimeImmutable('now', new \DateTimeZone('America/Sao_Paulo'));
+        $this->createdAt = $createdAt ?? new \DateTimeImmutable('now', new \DateTimeZone('America/Sao_Paulo'));
 
         return $this;
     }
@@ -133,9 +139,9 @@ class Event
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt = null): static
     {
-        $this->updatedAt = new \DateTimeImmutable('now', new \DateTimeZone('America/Sao_Paulo'));
+        $this->updatedAt = $updatedAt ?? new \DateTimeImmutable('now', new \DateTimeZone('America/Sao_Paulo'));
 
         return $this;
     }

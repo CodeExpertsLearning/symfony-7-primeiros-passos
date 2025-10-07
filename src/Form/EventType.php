@@ -12,13 +12,15 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $attrs = ['class' => 'w-full rounded p-2 border border-gray-800'];
+
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('body')
-            ->add('slug')
-            ->add('startEvent')
-            ->add('endEvent')
+            ->add('title', null, ['attr' => $attrs, 'label' => 'Titulo'])
+            ->add('description', null, ['attr' => $attrs, 'label' => 'Descrição'])
+            ->add('body', null, ['attr' => $attrs, 'label' => 'Conteúdo'])
+            ->add('slug', null, ['attr' => $attrs, 'label' => 'Slug'])
+            ->add('startEvent', null, ['attr' => $attrs, 'label' => 'Inicio Evento'])
+            ->add('endEvent', null, ['attr' => $attrs, 'label' => 'Encerramento Evento'])
         ;
     }
 
