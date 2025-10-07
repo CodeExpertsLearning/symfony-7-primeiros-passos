@@ -3,9 +3,21 @@
 @source not "../../public/";
 
 .btn {
-    @apply px-6 py-4 font-bold rounded border text-white text-xl
+    @apply px-4 py-2 font-bold rounded border text-white
+}
+
+.btn-lg {
+    @apply px-6 py-4 font-bold rounded border text-white
 }
 
 .btn-green {
     @apply border-green-900 bg-green-600
+}
+
+.btn-red {
+    @apply border-red-900 bg-red-600
+}
+
+.btn-blue {
+    @apply border-blue-900 bg-blue-600
 }

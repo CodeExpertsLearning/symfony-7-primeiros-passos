@@ -1,17 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block body%}
 
-{% block body%}
-    {{users|length}}
+<div class="w-full my-10 flex justify-between items-center">
+    <h2 class="font-bold text-2xl text-left">Eventos</h2>
+</div>
 
-    {% if users|length > 2 %}  <br> Exiba algo  <br> {% endif %}
+<div class="w-full mb-10">
+    <table class="w-full">
+        <thead>
+            <tr class="border-b border-gray-600">
+                <th class="px-6 py-2 font-bold text-left">#</th>
+                <th class="px-6 py-2 font-bold text-left">Evento</th>
+                <th class="px-6 py-2 font-bold text-left">Quando Acontece</th>
+                <th class="px-6 py-2 font-bold text-left">Criado em</th>
+                <th class="px-6 py-2 font-bold text-left">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr class="border-b border-gray-400">
+                <td class="px-6 py-2 text-left">{{ event.id }}</td>
+                <td class="px-6 py-2 text-left">{{ event.title }}</td>
+                <td class="px-6 py-2 text-left">
+                    {{event.startEvent|date('d/m/Y H:i') }}
+                </td>
+                <td class="px-6 py-2 text-left">
+                    {{event.createdAt|date('d/m/Y H:i') }}
+                </td>
+                <td class="px-6 py-2 text-left flex gap-4">
+                    <a
+                        href="{{
+                            path('painel_events_edit', { event: event.id })
+                        }}"
+                        class="btn btn-blue"
+                        >EDITAR</a
+                    >
+                    <form
+                        action="{{
+                            path('painel_events_remove', { event: event.id })
+                        }}"
+                        method="POST"
+                    >
+                        <input
+                            type="hidden"
+                            name="_token"
+                            value="{{ csrf_token('delete' ~ event.id)}}"
+                        />
+                        <button class="btn btn-red">REMOVER</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %} {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-    {% for user in users %}
-        {% if loop.first %}  <br> Primeiro  <br> {% endif %}
-
-        {{user.name}} - {{user.email}} <br>
-    {% else %}
-        Sem Usuários...
-    {% endfor %}
-
-    <button class="btn btn-green">TESTE</button>
 {% endblock %}
