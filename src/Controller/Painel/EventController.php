@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,9 +17,18 @@ use Symfony\Component\Routing\Attribute\Route;
 final class EventController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(EventRepository $repository): Response
+    public function index(
+        EventRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+        ): Response
     {
-        $events = $repository->findAll();
+        $query = $repository->findAllPaginated();
+        $events = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            15
+        );
 
         return $this->render(
             'painel/events/index.twig',

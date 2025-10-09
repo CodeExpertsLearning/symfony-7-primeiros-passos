@@ -2,6 +2,9 @@
 
 @source not "../../public/";
 
+@source "../../templates/**/*";
+@source "../../vendor/**/*";
+
 .btn {
     @apply px-4 py-2 font-bold rounded border text-white
 }

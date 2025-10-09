@@ -3,12 +3,9 @@
 <div class="w-full my-10 flex justify-between items-center">
     <h2 class="font-bold text-2xl text-left">Eventos</h2>
 
-    <a
-    href="{{
-        path('painel_events_create')
-    }}"
-    class="btn btn-green"
-    >CRIAR EVENTO</a>
+    <a href="{{ path('painel_events_create') }}" class="btn btn-green"
+        >CRIAR EVENTO</a
+    >
 </div>
 
 <div class="w-full mb-10">
@@ -59,6 +56,10 @@
             {% else %} {% endfor %}
         </tbody>
     </table>
+
+    <div class="mt-10 p-2 flex justify-end">
+        {{ knp_pagination_render(events) }}
+    </div>
 </div>
 
 {% endblock %}
