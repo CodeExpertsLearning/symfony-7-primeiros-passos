@@ -1,65 +1,67 @@
 {% extends 'base.html.twig' %} {% block body%}
+<div class="max-w-7xl mx-auto">
+    <div class="w-full my-10 flex justify-between items-center">
+        <h2 class="font-bold text-2xl text-left">Eventos</h2>
 
-<div class="w-full my-10 flex justify-between items-center">
-    <h2 class="font-bold text-2xl text-left">Eventos</h2>
+        <a href="{{ path('painel_events_create') }}" class="btn btn-green"
+            >CRIAR EVENTO</a
+        >
+    </div>
 
-    <a href="{{ path('painel_events_create') }}" class="btn btn-green"
-        >CRIAR EVENTO</a
-    >
-</div>
+    <div class="w-full mb-10">
+        <table class="w-full">
+            <thead>
+                <tr class="border-b border-gray-600">
+                    <th class="px-6 py-2 font-bold text-left">#</th>
+                    <th class="px-6 py-2 font-bold text-left">Evento</th>
+                    <th class="px-6 py-2 font-bold text-left">Quando Acontece</th>
+                    <th class="px-6 py-2 font-bold text-left">Criado em</th>
+                    <th class="px-6 py-2 font-bold text-left">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr class="border-b border-gray-400">
+                    <td class="px-6 py-2 text-left">{{ event.id }}</td>
+                    <td class="px-6 py-2 text-left">{{ event.title }}</td>
+                    <td class="px-6 py-2 text-left">
+                        {{event.startEvent|date('d/m/Y H:i') }}
+                    </td>
+                    <td class="px-6 py-2 text-left">
+                        {{event.createdAt|date('d/m/Y H:i') }}
+                    </td>
+                    <td class="px-6 py-2 text-left flex gap-4">
+                        <a
+                            href="{{
+                                path('painel_events_edit', { event: event.id })
+                            }}"
+                            class="btn btn-blue"
+                            >EDITAR</a
+                        >
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <form
+                                action="{{
+                                    path('painel_events_remove', { event: event.id })
+                                }}"
+                                method="POST"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="_token"
+                                    value="{{ csrf_token('delete' ~ event.id)}}"
+                                />
+                                <button class="btn btn-red">REMOVER</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %} {% endfor %}
+            </tbody>
+        </table>
 
-<div class="w-full mb-10">
-    <table class="w-full">
-        <thead>
-            <tr class="border-b border-gray-600">
-                <th class="px-6 py-2 font-bold text-left">#</th>
-                <th class="px-6 py-2 font-bold text-left">Evento</th>
-                <th class="px-6 py-2 font-bold text-left">Quando Acontece</th>
-                <th class="px-6 py-2 font-bold text-left">Criado em</th>
-                <th class="px-6 py-2 font-bold text-left">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for event in events %}
-            <tr class="border-b border-gray-400">
-                <td class="px-6 py-2 text-left">{{ event.id }}</td>
-                <td class="px-6 py-2 text-left">{{ event.title }}</td>
-                <td class="px-6 py-2 text-left">
-                    {{event.startEvent|date('d/m/Y H:i') }}
-                </td>
-                <td class="px-6 py-2 text-left">
-                    {{event.createdAt|date('d/m/Y H:i') }}
-                </td>
-                <td class="px-6 py-2 text-left flex gap-4">
-                    <a
-                        href="{{
-                            path('painel_events_edit', { event: event.id })
-                        }}"
-                        class="btn btn-blue"
-                        >EDITAR</a
-                    >
-                    <form
-                        action="{{
-                            path('painel_events_remove', { event: event.id })
-                        }}"
-                        method="POST"
-                    >
-                        <input
-                            type="hidden"
-                            name="_token"
-                            value="{{ csrf_token('delete' ~ event.id)}}"
-                        />
-                        <button class="btn btn-red">REMOVER</button>
-                    </form>
-                </td>
-            </tr>
-            {% else %} {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="mt-10 p-2 flex justify-end">
-        {{ knp_pagination_render(events) }}
+        <div class="mt-10 p-2 flex justify-end">
+            {{ knp_pagination_render(events) }}
+        </div>
     </div>
 </div>
-
 {% endblock %}

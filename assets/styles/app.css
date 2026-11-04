@@ -6,7 +6,7 @@
 @source "../../vendor/**/*";
 
 .btn {
-    @apply px-4 py-2 font-bold rounded border text-white
+    @apply px-4 py-2 font-bold rounded border text-white transition duration-300 ease-in-out
 }
 
 .btn-lg {
@@ -14,7 +14,7 @@
 }
 
 .btn-green {
-    @apply border-green-900 bg-green-600
+    @apply border-green-900 bg-green-600 hover:bg-green-900
 }
 
 .btn-red {
