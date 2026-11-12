@@ -12,7 +12,7 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $attrs = ['class' => 'w-full rounded p-2 border border-gray-800'];
+        $attrs = ['class' => 'w-full rounded p-2 border border-gray-400'];
 
         $builder
             ->add('title', null, ['attr' => $attrs, 'label' => 'Titulo'])

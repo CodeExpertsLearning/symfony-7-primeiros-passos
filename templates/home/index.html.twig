@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<main class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+    <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+            <h1
+            class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white"
+            >
+            Dashboard
+        </h1>
+        <p class="mt-1 text-sm text-zinc-500">
+            Resumo da operação nos últimos 30 dias.
+        </p>
+    </div>
+    <button
+    type="button"
+    class="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+    >
+    Novo Evento
+</button>
+</div>
+
+<!-- ↓↓↓ Substitua este bloco pelo conteúdo de cada tela ↓↓↓ -->
+<section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div class="card p-5">
+        <p class="text-sm text-zinc-500">Eventos</p>
+        <p class="mt-1 text-2xl font-semibold">1.248</p>
+    </div>
+    <div class="card p-5">
+        <p class="text-sm text-zinc-500">Receita</p>
+        <p class="mt-1 text-2xl font-semibold">R$ 84.920</p>
+    </div>
+    <div class="card p-5">
+        <p class="text-sm text-zinc-500">Novos usuários</p>
+        <p class="mt-1 text-2xl font-semibold">312</p>
+    </div>
+    <div class="card p-5">
+        <p class="text-sm text-zinc-500">Taxa de cancelamento</p>
+        <p class="mt-1 text-2xl font-semibold">2,4%</p>
+    </div>
+</section>
+
+<section class="card mt-6 overflow-hidden">
+    <div class="border-b border-zinc-200 px-5 py-4 dark:border-zinc-800">
+        <h2 class="font-semibold text-zinc-900 dark:text-white">
+            Últimos pedidos
+        </h2>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+            <thead class="text-zinc-500">
+                <tr>
+                    <th class="px-5 py-3 font-medium">Evento</th>
+                    <th class="px-5 py-3 font-medium">Cliente</th>
+                    <th class="px-5 py-3 font-medium">Status</th>
+                    <th class="px-5 py-3 text-right font-medium">Valor</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <tr>
+                    <td class="px-5 py-3">#1042</td>
+                    <td class="px-5 py-3">Ana Lima</td>
+                    <td class="px-5 py-3">
+                        <span
+                        class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400"
+                        >Pago</span
+                        >
+                    </td>
+                    <td class="px-5 py-3 text-right">R$ 320,00</td>
+                </tr>
+                <tr>
+                    <td class="px-5 py-3">#1041</td>
+                    <td class="px-5 py-3">Carlos Reis</td>
+                    <td class="px-5 py-3">
+                        <span
+                        class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-500/15 dark:text-amber-400"
+                        >Pendente</span
+                        >
+                    </td>
+                    <td class="px-5 py-3 text-right">R$ 148,90</td>
+                </tr>
+                <tr>
+                    <td class="px-5 py-3">#1040</td>
+                    <td class="px-5 py-3">Beatriz Nunes</td>
+                    <td class="px-5 py-3">
+                        <span
+                        class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400"
+                        >Pago</span
+                        >
+                    </td>
+                    <td class="px-5 py-3 text-right">R$ 759,00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</main>
+{% endblock %}

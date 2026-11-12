@@ -1,0 +1,18 @@
+<aside id="sidebar"
+    class="fixed inset-y-0 left-0 z-40 flex w-sidebar
+    -translate-x-full flex-col border-r border-zinc-200
+    bg-zinc-100/70 transition-transform duration-200
+    lg:translate-x-0 dark:border-zinc-800 dark:bg-zinc-900">
+
+    <!-- Logo -->
+    <a href="{{path('app_home')}}" class="flex h-14 shrink-0 items-center gap-2.5 px-5 font-semibold text-zinc-900 dark:text-white">
+      <span class="grid size-7 place-items-center rounded-lg bg-brand-600 text-sm text-white">A</span>
+      EVENT EXPERTS
+    </a>
+
+    <!-- Navegação -->
+    {% include 'includes/menu.twig' %}
+
+    <!-- Usuário -->
+    {% include 'includes/nav_user.twig' %}
+  </aside>
