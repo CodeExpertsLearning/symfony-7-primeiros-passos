@@ -6,10 +6,15 @@ use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 #[ORM\Table(name: 'events')]
 class Event
 {
+    use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -28,7 +33,7 @@ class Event
     private ?string $body = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    #[Constraints\NotBlank(message: 'Este campo é obrigatório')]
+    #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug = null;
 
     #[ORM\Column]
@@ -37,13 +42,8 @@ class Event
 
     #[ORM\Column]
     #[Constraints\NotBlank(message: 'Este campo é obrigatório')]
+    #[Constraints\GreaterThanOrEqual(propertyPath: 'startEvent', message: 'Esta data deve ser maior que a Data de Inicio!')]
     private ?\DateTime $endEvent = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -122,26 +122,26 @@ class Event
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt = null): static
+    public function setCreatedAt(?\DateTime $createdAt = null): static
     {
-        $this->createdAt = $createdAt ?? new \DateTimeImmutable('now', new \DateTimeZone('America/Sao_Paulo'));
+        $this->createdAt = $createdAt ?? new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt = null): static
+    public function setUpdatedAt(?\DateTime $updatedAt = null): static
     {
-        $this->updatedAt = $updatedAt ?? new \DateTimeImmutable('now', new \DateTimeZone('America/Sao_Paulo'));
+        $this->updatedAt = $updatedAt ?? new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
 
         return $this;
     }

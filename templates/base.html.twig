@@ -19,7 +19,8 @@
 
 <body class="min-h-screen">
 
-  <!-- Fundo escuro do menu no mobile -->
+    {% if is_granted('IS_AUTHENTICATED') %}
+    <!-- Fundo escuro do menu no mobile -->
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-zinc-950/50 lg:hidden" data-toggle-sidebar></div>
 
   <!-- ===================== SIDEBAR ===================== -->
@@ -82,12 +83,16 @@
           </div>
 
           <hr class="my-1.5 border-zinc-200 dark:border-zinc-800">
-          <a href="#" class="menu-item text-red-600 dark:text-red-400">Sair</a>
+          <a href="{{logout_path()}}" class="menu-item text-red-600 dark:text-red-400">Sair</a>
         </div>
       </div>
     </header>
+    {% endif %}
 
     {% block body %}{% endblock %}
-  </div>
+
+  {% if is_granted('IS_AUTHENTICATED') %}
+    </div>
+  {% endif %}
 </body>
 </html>

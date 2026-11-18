@@ -31,17 +31,12 @@ final class EventFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
-        $dateNow = new \DateTimeImmutable('now', new \DateTimeZone('America/Sao_Paulo'));
-
         return [
             'title' => self::faker()->text(65),
             'body' => self::faker()->paragraphs(3, asText: true),
             'description' => self::faker()->sentence,
-            'slug' => self::faker()->unique()->slug(),
             'startEvent' => self::faker()->dateTime(),
             'endEvent' => self::faker()->dateTime(),
-            'createdAt' => $dateNow,
-            'updatedAt' => $dateNow,
         ];
     }
 

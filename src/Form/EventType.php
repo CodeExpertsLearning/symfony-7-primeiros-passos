@@ -18,7 +18,6 @@ class EventType extends AbstractType
             ->add('title', null, ['attr' => $attrs, 'label' => 'Titulo'])
             ->add('description', null, ['attr' => $attrs, 'label' => 'Descrição'])
             ->add('body', null, ['attr' => $attrs, 'label' => 'Conteúdo'])
-            ->add('slug', null, ['attr' => $attrs, 'label' => 'Slug'])
             ->add('startEvent', null, ['attr' => $attrs, 'label' => 'Inicio Evento'])
             ->add('endEvent', null, ['attr' => $attrs, 'label' => 'Encerramento Evento'])
         ;

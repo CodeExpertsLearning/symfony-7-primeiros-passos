@@ -54,8 +54,8 @@ class RegistrationController extends AbstractController
 
         $user->setRoles(['ROLE_SUPER_ADMIN']);
 
-        //IS_AUTHENTICADED, IS_AUTHENTICADED_FULLY
-        //IS_AUTHENTICADED_REMEBERED, IS_REMEMBERED
+        //IS_AUTHENTICATED, IS_AUTHENTICATED_FULLY
+        //IS_AUTHENTICATED_REMEBERED, IS_REMEMBERED
 
         $em->flush();
 
