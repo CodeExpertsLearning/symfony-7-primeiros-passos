@@ -83,7 +83,14 @@
           </div>
 
           <hr class="my-1.5 border-zinc-200 dark:border-zinc-800">
-          <a href="{{logout_path()}}" class="menu-item text-red-600 dark:text-red-400">Sair</a>
+
+          <form method="POST" action="{{logout_path()}}">
+          <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('logout') }}">
+            <button
+                class="menu-item text-red-600 dark:text-red-400 cursor-pointer">
+            Sair
+            </button>
+          </form>
         </div>
       </div>
     </header>
